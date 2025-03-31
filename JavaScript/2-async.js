@@ -9,7 +9,7 @@ const checkAvailability = async (items, state) => {
   for (const item of items) {
     const { id, quantity } = item;
     const count = state[id];
-    if (quantity > count) {
+    if (quantity >= count) {
       console.log({ checkEnd: false });
       return false;
     }
@@ -47,27 +47,28 @@ const buy = async (order, state) => {
   console.log({ state });
 };
 
-const state = { 1722: 5 };
-const name = 'A4 Paper; 500 sheets; 75 Gsm';
-
 const main = async () => {
+  const id = '1722';
+  const state = { [id]: 5 };
+  const name = 'A4 Paper; 500 sheets; 75 Gsm';
+
   const order1 = {
     paymentDetails: { card: '**** **** **** 1234' },
-    items: [{ id: '1722', name, price: 52, quantity: 3 }],
+    items: [{ id, name, price: 52, quantity: 3 }],
     userEmail: 'customer@example.com',
   };
   await buy(order1, state);
 
   const order2 = {
     paymentDetails: { card: '**** **** **** 1234' },
-    items: [{ id: '1722', name, price: 52, quantity: 1 }],
+    items: [{ id, name, price: 52, quantity: 1 }],
     userEmail: 'customer@example.com',
   };
   await buy(order2, state);
 
   const order3 = {
     paymentDetails: { card: '**** **** **** 1234' },
-    items: [{ id: '1722', name, price: 52, quantity: 2 }],
+    items: [{ id, name, price: 52, quantity: 2 }],
     userEmail: 'customer@example.com',
   };
   await buy(order3, state);

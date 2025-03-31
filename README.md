@@ -1,2 +1,1 @@
-# Actor
-Actor Pattern
+# Actor Pattern
